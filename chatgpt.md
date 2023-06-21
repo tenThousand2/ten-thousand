@@ -1,3 +1,5 @@
+# gpt
+
 Define a GameLogic class in ten_thousand/game_logic.py file.
 Handle calculating score for dice roll
 Add calculate_score static method to GameLogic class.
@@ -30,4 +32,23 @@ The output from calculate_score is an integer representing the roll’s score ac
 
               return score
 
+## for testing
 
+once the main bulk of the code was done, we then wrote test driven code and asked gpt to help write code for this specific test and we did this for a handle full of tests
+
+example:
+
+Prompt: *insert code here
+
+modify the code to work with this test:
+
+    def test_five_of_a_kind():
+        actual = GameLogic.calculate_score((2, 2, 2, 2, 2))
+        expected = 600
+        assert actual == expected
+
+output:
+
+    if counts[1] == 5:
+      score += 3000 
+      return score
