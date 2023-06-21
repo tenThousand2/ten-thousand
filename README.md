@@ -1,9 +1,9 @@
-# Lab - Class 06
+# Lab - Class 06 and 7
 
 ## Project: ten-thousand
 
 Author: Anthony Sinitsa
-Collaborated with Dan quinn, sarah glass, logan reese
+Collaborated with Andrew Carroll, jared ciccarello, dan quinn, bard and chatgpt
 
 ## Overview
 
@@ -17,7 +17,4 @@ venv install and pytest
 ## Tests
 
 just used the pytest -k version_1 to test code with the proper file structure
-
-## contributors
-
-Andrew Carroolll, jared cicacreralool, dan quinn, bard and chatgpt
+pytest -k version_2
