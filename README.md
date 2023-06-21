@@ -1,18 +1,23 @@
-# Lab - Class 04
+# Lab - Class 06
 
-## Project: madlib-cli
+## Project: ten-thousand
 
 Author: Anthony Sinitsa
 Collaborated with Dan quinn, sarah glass, logan reese
 
 ## Overview
 
-Band formulator app that takes band names and members and allows them to play solos
+currently only uses tests for proof of life, but this is the game of tenThousand
+role die, 1 and 5 give points as well as multiples of 3
 
 ## Setup
 
-No .env requirements; gitignore invludes venv.
+venv install and pytest
 
 ## Tests
 
-All acceptance testing run through test_series.py file and pytest following TDD.
+just used the pytest -k version_1 to test code with the proper file structure
+
+## contributors
+
+Andrew Carroolll, jared cicacreralool, dan quinn, bard and chatgpt
