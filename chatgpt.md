@@ -52,3 +52,53 @@ output:
     if counts[1] == 5:
       score += 3000 
       return score
+
+
+
+
+
+
+
+
+      create a scoring guide for the farkle game using the Counter library in python
+
+ChatGPT
+Certainly! Here's an example of a scoring guide for the Farkle game using the Counter library in Python:
+
+python
+Copy code
+from collections import Counter
+
+def calculate_score(dice):
+    score = 0
+    counter = Counter(dice)
+
+    # Scoring for individual dice
+    score += counter[1] * 100  # Each '1' is worth 100 points
+    score += counter[5] * 50   # Each '5' is worth 50 points
+
+    # Scoring for combinations
+    for num, count in counter.items():
+        if count >= 3:  # Three or more of a kind
+            if num == 1:  # Three '1's
+                score += 1000
+            else:         # Three of any other number
+                score += num * 100
+
+            if count > 3:  # Additional dice beyond three
+                score += (count - 3) * num * 100
+
+        # Special scoring for specific combinations
+        if num == 1 or num == 5:
+            continue
+
+        if count == 4:  # Four of a kind
+            score += num * 100
+
+        if count == 5:  # Five of a kind
+            score += num * 200
+
+        if count == 6:  # Six of a kind
+            score += num * 300
+
+    return score
