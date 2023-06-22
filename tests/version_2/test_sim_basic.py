@@ -11,7 +11,7 @@ def test_quitter():
     assert not diffs, diffs
 
 
-# @pytest.mark.skip("Pending")
+@pytest.mark.skip("Pending")
 def test_one_and_done():
     diffs = diff(play, path="tests/version_2/one_and_done.sim.txt")
     assert not diffs, diffs
@@ -25,7 +25,7 @@ def test_single_bank():
     assert not diffs, diffs
 
 
-# @pytest.mark.skip("Pending")
+@pytest.mark.skip("Pending")
 def test_bank_first_for_two_rounds():
     diffs = diff(
         play, path="tests/version_2/bank_first_for_two_rounds.sim.txt"

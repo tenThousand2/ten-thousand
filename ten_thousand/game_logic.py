@@ -12,27 +12,27 @@ class GameLogic:
 
     # Scoring for combinations
     for num, count in counter.items():
-        if count >= 3:  # Three or more of a kind
-            if num == 1:  # Three '1's
-                score += 1000
-            else:         # Three of any other number
-                score += num * 100
+      if count >= 3:  # Three or more of a kind
+        if num == 1:  # Three '1's
+          score += 1000
+        else:         # Three of any other number
+          score += num * 100
 
-            if count > 3:  # Additional dice beyond three
-                score += (count - 3) * num * 100
+        if count > 3:  # Additional dice beyond three
+          score += (count - 3) * num * 100
 
-        # Special scoring for specific combinations
-        if num == 1 or num == 5:
-            continue
+      # Special scoring for specific combinations
+      if num == 1 or num == 5:
+        continue
 
-        if count == 4:  # Four of a kind
-            score += num * 100
+      if count == 4:  # Four of a kind
+        score += num * 100
 
-        if count == 5:  # Five of a kind
-            score += num * 200
-            
-        if count == 6:  # Six of a kind
-            score += num * 300
+      if count == 5:  # Five of a kind
+        score += num * 200
+          
+      if count == 6:  # Six of a kind
+        score += num * 300
     return score
 
 
