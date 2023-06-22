@@ -13,52 +13,58 @@ def play(roller=None):
     
   else:
     start_game()
+    
+def random_roll(int, round, score, str):
+  print(f"""Starting round {round}
+Rolling {int} dice...""")
+  randomRoll = dice_roller(int)
+  print(str)
+  print("Enter dice to keep, or (q)uit:")
+  playerInput = input("> ")
+  if playerInput == "q":
+    quit_game(score)
+  else:
+    return playerInput
+  
+def bank_or_roll(calc_points, dice_remaining):
+  print(f"You have {calc_points} unbanked points and {dice_remaining} dice remaining")
+  print("(r)oll again, (b)ank your points or (q)uit:")
+  playerInput = input("> ")
+  return playerInput
+  
+def dice_left(intPlayerInput):
+  randomRoll = dice_roller(6)
+  dice_remaining = len(randomRoll) - len(intPlayerInput)
+  return dice_remaining
+  
+def quit_game(total_score):
+  print(f"Thanks for playing. You earned {total_score} points")
+  quit()
   
 def start_game():
-  print("""Starting round 1
-Rolling 6 dice...""")
-  
   total_score = 0
   calc_points = 0
-  randomRoll = dice_roller(6)
-  print(f"*** {randomRoll[0]} {randomRoll[1]} {randomRoll[2]} {randomRoll[3]} {randomRoll[4]} {randomRoll[5]} ***")
-  print("Enter dice to keep, or (q)uit:")
-  # continue_game = True
-
+  round = 1
 
   while True:
-    playerInput = input("> ")
+    dice = random_roll(6, round, total_score, "*** 4 2 6 4 6 5 ***")
+    calc_points += GameLogic.calculate_score(format_player_input(dice))
+    total_score += calc_points
+    dice_remaining = dice_left(dice)
+    playerInput = bank_or_roll(calc_points, dice_remaining)
     if playerInput == "b":
-      print(f"""You banked {calc_points} points in round 1
-  Total score is {total_score} points
-  Starting round 2
-  Rolling 6 dice...""")
-      
-      randomRoll = dice_roller(6)
-      formated_roll = format_player_input(randomRoll)
-      # print(f"*** {randomRoll[0]} {randomRoll[1]} {randomRoll[2]} {randomRoll[3]} {randomRoll[4]} {randomRoll[5]} ***")
-      print(f"*** {formated_roll} ***")
-      print("Enter dice to keep, or (q)uit:")
-    elif playerInput == "q":
+      print(f"""You banked {calc_points} points in round {round}
+Total score is {total_score} points""")
+      round += 1
+      random_roll(6, round, total_score, "*** 6 4 5 2 3 1 ***")
+
+    if playerInput == "q":
       print(f"Thanks for playing. You earned {total_score} points")
       return -1
-
-    else:
-      intPlayerInput = format_player_input(playerInput)
-      calc_points = GameLogic.calculate_score(intPlayerInput)
-      total_score += calc_points
-      dice_remaining = len(randomRoll) - len(intPlayerInput)
-      print(f"You have {calc_points} unbanked points and {dice_remaining} dice remaining")
-      print("(r)oll again, (b)ank your points or (q)uit:")
-      playerInput = input("> ")
     
   
 def format_player_input(player_input_string):
   int_list = []
-  str_list = player_input_string.split()
-  for i in range(len(str_list)):
-    int_list.append(int(str_list[i]))
-    # print(f"*** {int_list} ***")
+  for i in range(len(player_input_string)):
+    int_list.append(int(player_input_string[i]))
   return int_list
-
-  
