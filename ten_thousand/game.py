@@ -1,4 +1,5 @@
 from ten_thousand.game_logic import GameLogic
+from collections import Counter
 dice_roller = GameLogic.roll_dice
 
 def play():
@@ -6,37 +7,57 @@ def play():
   print("""Welcome to Ten Thousand
 (y)es to play or (n)o to decline""")
   playerInput = input("> ")
+  playerInput = playerInput.replace(" ", "") 
   
-  if playerInput == 'n':
+  if playerInput.lower() == 'n':
     print("OK. Maybe another time")
-    
-  else:
+  elif playerInput.lower() == "y":
     start_game()
+  else:
+    print("put in y or n")
+    play()
     
-def random_roll(score, round, int = 6):
+
+def roll_dice(int):
   roll_dice = GameLogic.roll_dice(int)
   print(roll_dice)
+  return roll_dice
+
+def random_roll(score, round, dice, int = 6):
   # print(f"*** {roll_dice[0]} {roll_dice[1]} {roll_dice[2]} {roll_dice[3]} {roll_dice[4]} {roll_dice[5]} ***")
-  if if_farkled(roll_dice, round):
+  if if_farkled(dice, round):
     return False
   else:
-    print("Enter dice to keep, or (q)uit:")
-    playerInput = input("> ")
-    if playerInput == "q":
-      quit_game(score)
-    else:
-      return playerInput
+    while True:
+      print("Enter dice to keep, or (q)uit:")
+      playerInput = input("> ")
+      playerInput = playerInput.replace(" ", "") 
+      if playerInput == "q":
+        quit_game(score)
+      dice_list = Counter(dice)
+      formatted = format_player_input(playerInput)
+      players_choice = Counter(formatted)
+      if playerInput == "q":
+        quit_game(score)
+      if all(dice_list[element] >= count for element, count in players_choice.items()):
+        return playerInput
+      else:
+        print("Cheater!!! Or possibly made a typo...")
+        continue
+        # random_roll(score, round, dice, int)
   
 def bank_or_roll(calc_points, dice_remaining):
   if dice_remaining > 0:
     print(f"You have {calc_points} unbanked points and {dice_remaining} dice remaining")
     print("(r)oll again, (b)ank your points or (q)uit:")
     playerInput = input("> ")
+    playerInput = playerInput.replace(" ", "") 
     return playerInput
   else:
     print(f"You have {calc_points} and {dice_remaining}")
     print("(b)ank your points or (q)uit:")
     playerInput = input("> ")
+    playerInput = playerInput.replace(" ", "") 
     return playerInput
 
 def count_dice(dice):
@@ -44,16 +65,10 @@ def count_dice(dice):
     for num in dice:
         counts[num] = counts.get(num, 0) + 1
     return counts
-  
-# def if_farkled(takes in dice roll):
-#   if any dice number is equal to 1 and or 5 and or 3ofaKind or 3 pairs
-#   prompt the user to bank dice of their choice
-#   if they can bank all die and choose to do so move on to the next round and roll new die
-#   if they bank some die and decide to roll again, if the new rolls are not 1 and or 5 and or 3ofaKind they will get farkled and will lose their points for this round and will move on to the next round
 
 def if_farkled(dice, round):
   round += 1
-  if 1 not in dice and 5 not in dice or GameLogic.calculate_score(dice) == 0:
+  if 1 not in dice and 5 not in dice and GameLogic.calculate_score(dice) == 0:
     print("Farkle!")
     print(f"You lost all your unbanked points. Round {round}")
     return True
@@ -83,14 +98,14 @@ def start_game():
     if total_score == 10000:
       print("you win")
       quit_game(total_score)
-    dice = random_roll(total_score, round, dice_leftovers)
+    roll = roll_dice(dice_leftovers)
+    dice = random_roll(total_score, round, roll, dice_leftovers)
     if dice == False:
       calc_points = 0
       round += 1
       dice_leftovers = 6
       continue
     else:
-      
       dice_leftovers = dice_left(dice, dice_leftovers)
       calc_points += GameLogic.calculate_score(format_player_input(dice))
       playerInput = bank_or_roll(calc_points, dice_leftovers)
