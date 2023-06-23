@@ -54,3 +54,8 @@ class GameLogic:
       raise ValueError("Number of dice must be between 1 and 6.") # ValueError("Number of dice must be between 1 and 6.")
     results = tuple(random.randint(1, 6) for _ in range(number_of_dice)) # (5, 5, 5, 2, 2, 3)
     return results # (5, 5, 5, 2, 2, 3)
+
+# def roll_dice(num_dice):
+#     """Rolls a specified number of dice and returns the results as a list."""
+#     dice = [random.randint(1, 6) for _ in range(num_dice)]
+#     return dice
