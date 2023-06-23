@@ -2,8 +2,8 @@
 
 ## Project: ten-thousand
 
-Author: Anthony Sinitsa
-Collaborated with Andrew Carroll, jared ciccarello, dan quinn, bard and chatgpt
+Anthony Sinitsa
+Collaborator Andrew Carroll, jared ciccarello, dan quinn, bard and chatgpt
 
 ## Overview
 
