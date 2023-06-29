@@ -1,9 +1,9 @@
 from ten_thousand.game_logic import GameLogic
+
 dice_roller = GameLogic.roll_dice
 
 def play(roller=None):
   global dice_roller
-  dice_roller = roller
   print("""Welcome to Ten Thousand
 (y)es to play or (n)o to decline""")
   playerInput = input("> ")
@@ -14,11 +14,12 @@ def play(roller=None):
   else:
     start_game()
     
-def random_roll(int, round, score, str):
+def random_roll(int, round, score):
+  roll_dice = GameLogic.roll_dice(int)
   print(f"""Starting round {round}
 Rolling {int} dice...""")
-  randomRoll = dice_roller(int)
-  print(str)
+  randomRoll = dice_roller
+  print(f"*** {roll_dice[0]} {roll_dice[1]} {roll_dice[2]} {roll_dice[3]} {roll_dice[4]} {roll_dice[5]} ")
   print("Enter dice to keep, or (q)uit:")
   playerInput = input("> ")
   if playerInput == "q":
@@ -68,3 +69,6 @@ def format_player_input(player_input_string):
   for i in range(len(player_input_string)):
     int_list.append(int(player_input_string[i]))
   return int_list
+
+if __name__ == '__main__':
+  play()
