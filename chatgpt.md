@@ -60,7 +60,7 @@ output:
 
 
 
-      create a scoring guide for the farkle game using the Counter library in python
+    create a scoring guide for the farkle game using the Counter library in python
 
 ChatGPT
 Certainly! Here's an example of a scoring guide for the Farkle game using the Counter library in Python:
