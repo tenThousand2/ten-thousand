@@ -110,9 +110,9 @@ def start_game():
       calc_points += GameLogic.calculate_score(format_player_input(dice))
       playerInput = bank_or_roll(calc_points, dice_leftovers)
       if playerInput == "b":
-        print(f"""You banked {calc_points} points in round {round}
-  Total score is {total_score} points""")
         total_score += calc_points
+        print(f"""You banked {calc_points} points in round {round}
+Total score is {total_score} points""")
         round += 1
         calc_points = 0
         print(f"Starting round {round}\nRolling 6 dice...")
@@ -128,7 +128,7 @@ def start_game():
           dice_leftovers = 6
           continue
       if playerInput == "q":
-        quit_game()
+        quit_game(total_score)
       else:
         unbanked_points_message(round, total_score, calc_points, dice_leftovers)
   
