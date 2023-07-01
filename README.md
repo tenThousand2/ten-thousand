@@ -19,5 +19,7 @@ venv install and pytest
 
 ## Tests
 
-just used the pytest -k version_1 to test code with the proper file structure
-pytest -k version_2
+pytest -k version_1       these tests will pass, verions 2 and 3 will obviously not pass
+
+to run code:   python3 -m ten_thousand.game
+run that from root
